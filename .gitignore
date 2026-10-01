@@ -1,0 +1,54 @@
+# ====================================================================
+# 🔐 CRITICAL SECURITY LAYER: ENVIRONMENT VARIABLES & CREDENTIALS
+# ====================================================================
+.env
+.env.local
+.env.*.local
+*.env
+env/
+ENV/
+secrets.json
+credentials.json
+firebase-applet-config.json
+*.pem
+*.key
+
+# ====================================================================
+# 🐍 PYTHON MICROSERVICE SPECIFIC CACHES (FastAPI)
+# ====================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.venv
+venv/
+active_env/
+
+# ====================================================================
+# 📱 FLUTTER COMPILATION & PACKAGE MANAGERS
+# ====================================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+digital_yantra_frontend/build/
+
+# Ignore generated web infrastructure binaries except source configurations
+digital_yantra_frontend/.pub-cache/
+digital_yantra_frontend/ephemeral/
+
+# ====================================================================
+# 🖥️ DESKTOP OPERATING SYSTEM CACHES & LOGS
+# ====================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.log
+node_modules/
+dist/

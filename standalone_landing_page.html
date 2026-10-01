@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Yantra // Hardware Storytelling Canvas</title>
+    <style>
+        :root {
+            --parchment: #F7F4EB;
+            --ink: #1E242B;
+            --gold: #D4AF37;
+            --cyan: #00A8B5;
+            --card-border: rgba(30, 36, 43, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--parchment);
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-family: monospace;
+            color: var(--cyan);
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Lab Simulator Grid Layout */
+        .simulator-box {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1.5px solid var(--card-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 700px) {
+            .simulator-box { grid-template-columns: 1.2fr 0.8fr; }
+        }
+
+        .canvas-container {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 4px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .canvas-container::after {
+            content: "LIVE VECTOR PREVIEW // ACTIVE DISPLAY";
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-family: monospace;
+            font-size: 10px;
+            color: var(--cyan);
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        canvas { width: 100%; height: 100%; }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .control-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .control-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .control-group label span:last-child {
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--gold);
+        }
+
+        /* Narrative Scroll Cards */
+        .narrative-card {
+            background: var(--parchment);
+            border-left: 5px solid var(--gold);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(30, 36, 43, 0.03);
+        }
+
+        .narrative-card.tier-2 { border-left-color: var(--cyan); }
+        .narrative-card.tier-3 { border-left-color: var(--ink); }
+
+        .narrative-card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .narrative-card h3 { font-family: monospace; font-size: 0.75rem; color: #7f8c8d; text-transform: uppercase; margin-bottom: 1rem; }
+        .narrative-card p { font-size: 0.95rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>The Digital Yantra: Pixel Archetype</h1>
+        <p>ENGINEERING VISUAL NOVEL // POWERED BY GOOGLE AI STUDIO & FLUTTER CORE</p>
+    </header>
+
+    <!-- Engineering Focus Domain Card -->
+    <div style="background: rgba(0, 168, 181, 0.06); border: 1.5px solid #00A8B5; border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
+        <h4 style="font-size: 0.9rem; font-weight: 800; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            🔬 Engineering Focus: Camera Optics Systems & High-Density Interconnect (HDI) PCBs
+        </h4>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: #2C3E50; margin-bottom: 0.5rem;">
+            This iteration of <em>The Digital Yantra</em> focuses on two specific, highly constrained domains within flagship mobile hardware architecture:
+        </p>
+        <ul style="font-size: 0.85rem; line-height: 1.5; color: #2C3E50; padding-left: 1.25rem;">
+            <li><strong>Multi-Element Folded Optics Arrays:</strong> Simulating the structural clearance, element-by-element glass dispersion alignment, and focal convergence paths required for standard wide, ultrawide, and periscope telephoto smartphone modules.</li>
+            <li><strong>HDI Micro-Architecture (Digital Yantras):</strong> Mapping the complex copper conductive traces, thermal shielding boundaries, and high-frequency data bus layouts of multi-layered logic boards optimized to minimize trace-to-trace crosstalk and EMI.</li>
+        </ul>
+    </div>
+
+    <!-- Lab Simulator Component -->
+    <div class="simulator-box">
+        <div class="canvas-container">
+            <canvas id="yantraCanvas"></canvas>
+        </div>
+        <div class="controls">
+            <div class="control-group">
+                <label><span>Camera Visor Scale</span><span id="visorVal">24px</span></label>
+                <input type="range" id="visorSlider" min="10" max="45" value="24">
+            </div>
+            <div class="control-group">
+                <label><span>Chassis Curvature Radius</span><span id="radiusVal">16px</span></label>
+                <input type="range" id="radiusSlider" min="4" max="32" value="16">
+            </div>
+            <div class="control-group">
+                <label><span>Exploded Anatomy Split</span><span id="explosionVal">0.0</span></label>
+                <input type="range" id="explosionSlider" min="0" max="1" step="0.01" value="0">
+            </div>
+        </div>
+    </div>
+
+    <!-- Narrative Section -->
+    <div class="narrative-card tier-1">
+        <h2>FRAME 01 // THE TALAMANA GENESIS</h2>
+        <h3>The Geometric Paradigm</h3>
+        <p>The modern mobile chassis does not begin with raw metal casting; it is birthed inside an invariant parametric grid matrix, directly echoing the strict iconometric proportions defined by classical historical treatises.</p>
+    </div>
+
+    <div class="narrative-card tier-2">
+        <h2>FRAME 02 // YANTRA DECONSTRUCTION</h2>
+        <h3>Internal Architecture</h3>
+        <p>The camera assembly isolates precision glass lenses along a rigid focal path, converging light data seamlessly onto the imaging sensor plane while the logic board channels micro-current traces like a digital yantra.</p>
+    </div>
+
+    <div class="narrative-card tier-3">
+        <h2>FRAME 03 // THE POLISHED PRATIMA</h2>
+        <h3>The Physical Object</h3>
+        <p>Mathematical grids and internal exploded sub-assemblies solidify into a singular, tactile consumer monolith. Structural aluminum perimeter bands lock seamlessly into the frosted matte back glass, producing an unyielding, balanced form factor.</p>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('yantraCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Extract UI Control Elements
+    const visorSlider = document.getElementById('visorSlider');
+    const radiusSlider = document.getElementById('radiusSlider');
+    const explosionSlider = document.getElementById('explosionSlider');
+
+    function drawAdvancedSimulation() {
+        // 1. Establish Layout Boundaries
+        const w = canvas.width = canvas.parentElement.clientWidth;
+        const h = canvas.height = canvas.parentElement.clientHeight;
+        ctx.clearRect(0, 0, w, h);
+
+        const cx = w / 2;
+        const cy = h / 2;
+
+        const visorThickness = parseFloat(visorSlider.value);
+        const chassisRadius = parseFloat(radiusSlider.value);
+        const explosion = parseFloat(explosionSlider.value);
+
+        // Dynamic UI Value Updates
+        document.getElementById('visorVal').innerText = visorThickness + 'px';
+        document.getElementById('radiusVal').innerText = chassisRadius + 'px';
+        document.getElementById('explosionVal').innerText = explosion.toFixed(2);
+
+        // --- COLOR PALETTE TOKENS ---
+        const colorInk = '#1E242B';
+        const colorCyan = 'rgba(0, 168, 181, 0.4)';
+        const colorGold = 'rgba(212, 175, 55, 0.7)';
+
+        // 2. Render Foundational Talamana Coordinate Blueprint
+        ctx.strokeStyle = colorCyan;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(cx, cy, h * 0.4, 0, 2 * Math.PI);
+        // Draw concentric inner alignment target rings
+        ctx.arc(cx, cy, h * 0.2, 0, 2 * Math.PI);
+        ctx.moveTo(0, cy); ctx.lineTo(w, cy);
+        ctx.moveTo(cx, 0); ctx.lineTo(cx, h);
+        ctx.stroke();
+
+        const deviceWidth = 120;
+        const deviceHeight = 220;
+
+        // 3. Layer A: Main Chassis Enclosure (Displaces downwards on user scroll)
+        const chassisY = cy + (explosion * 50);
+        ctx.strokeStyle = colorInk;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.roundRect(cx - deviceWidth / 2, chassisY - deviceHeight / 2, deviceWidth, deviceHeight, chassisRadius);
+        ctx.stroke();
+
+        // 4. Layer B: High-Density PCB Circuit Array (Fades and offsets inward)
+        const pcbY = cy + (explosion * -10);
+        ctx.strokeStyle = colorCyan;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.rect(cx - (deviceWidth - 16) / 2, pcbY - (deviceHeight - 48) / 2, deviceWidth - 16, deviceHeight - 48);
+        ctx.stroke();
+
+        // Render Geometric Copper Circuit Trace Networks
+        ctx.strokeStyle = colorGold;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let i = 0; i < 5; i++) {
+            let step = i * 14;
+            ctx.moveTo(cx - 40 + step, pcbY - 50);
+            ctx.lineTo(cx - 20 + step, pcbY);
+            ctx.lineTo(cx - 20 + step, pcbY + 50);
+        }
+        ctx.stroke();
+
+        // 5. Layer C: Camera Visor Array (Explodes upward significantly)
+        const visorY = cy - (deviceHeight / 3) + (explosion * -65);
+        ctx.strokeStyle = colorInk;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.roundRect(cx - (deviceWidth - 8) / 2, visorY - visorThickness / 2, deviceWidth - 8, visorThickness, 6);
+        ctx.stroke();
+
+        // 6. Layer D: Multi-Element Glass Lens Array & Optical Ray-Tracing
+        const lensRadius = visorThickness * 0.24;
+        const lensPositionsX = [cx - 26, cx, cx + 26];
+
+        ctx.lineWidth = 1.5;
+        lensPositionsX.forEach((lensX) => {
+            // Draw the mechanical glass boundaries
+            ctx.strokeStyle = colorInk;
+            ctx.beginPath();
+            ctx.arc(lensX, visorY, lensRadius, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            // Draw Interactive Ray-Tracing Paths if user initiates an Exploded View gesture
+            if (explosion > 0.1) {
+                ctx.strokeStyle = 'rgba(0, 168, 181, 0.7)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                // Vector entry rays converging to a focal point behind the chassis layer
+                ctx.moveTo(lensX - 10, visorY - 30);
+                ctx.lineTo(lensX, visorY);
+                ctx.lineTo(lensX, chassisY + 20);
+                ctx.moveTo(lensX + 10, visorY - 30);
+                ctx.lineTo(lensX, visorY);
+                ctx.stroke();
+            }
+        });
+    }
+
+    // Attach listeners to input vectors to force screen recalculations
+    [visorSlider, radiusSlider, explosionSlider].forEach(inputElement => {
+        inputElement.addEventListener('input', drawAdvancedSimulation);
+    });
+    window.addEventListener('resize', drawAdvancedSimulation);
+
+    // Boot initial render phase
+    drawAdvancedSimulation();
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "The Digital Yantra: Engineering Graphic Novel",
+  "description": "An interactive, animated engineering graphic novel mapping flagship hardware via sacred geometry, parallax scrolling, and the Google AI Studio Shilpin Engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

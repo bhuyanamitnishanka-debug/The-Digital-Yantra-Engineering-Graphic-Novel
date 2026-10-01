@@ -1,0 +1,36 @@
+name: Deploy Flutter Web to GitHub Pages
+on:
+  push:
+    branches:
+      - main  # Trigger build automatically when pushing to your main code branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # 1. Install & Set Up Flutter Build Environment
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      # 2. Grab Project Dependencies
+      - name: Install Dependencies
+        run: |
+          cd digital_yantra_frontend
+          flutter pub get
+
+      # 3. Compile App into Optimized Web Assets
+      - name: Build Web Application
+        run: |
+          cd digital_yantra_frontend
+          flutter build web --base-href "/${{ github.event.repository.name }}/" --release
+
+      # 4. Push Generated Build Output Directly to gh-pages Branch
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: digital_yantra_frontend/build/web
+          branch: gh-pages

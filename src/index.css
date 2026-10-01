@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cinzel: 'Cinzel', serif;
+    --font-cormorant: 'Cormorant Garamond', serif;
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Digital Yantra Global Portfolio Design Tokens */
+    --color-parchment-bg: #F7F4EB;
+    --color-structural-ink: #1E242B;
+    --color-geometric-gold: #D4AF37;
+    --color-blueprint-cyan: #00A8B5;
+  }
+
+  body {
+    font-family: var(--font-jakarta);
+    background-color: #110F0D;
+    color: #EBE5D8;
+  }
+}
+
+.font-display {
+  font-family: 'Cinzel', serif;
+}
+
+.font-serif-prose {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-technical {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141311;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3c3426;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #735933;
+}
+
+/* Texture overlays */
+.parchment-texture {
+  background-color: #EBDCB9;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(255, 248, 230, 0.85) 0%, rgba(220, 198, 155, 0.8) 100%),
+    repeating-linear-gradient(0deg, rgba(160, 120, 70, 0.03) 0px, rgba(160, 120, 70, 0.03) 1px, transparent 1px, transparent 4px),
+    repeating-linear-gradient(90deg, rgba(160, 120, 70, 0.03) 0px, rgba(160, 120, 70, 0.03) 1px, transparent 1px, transparent 4px);
+}
+
+.dark-blueprint {
+  background-color: #0c121e;
+  background-image: 
+    radial-gradient(circle at 50% 50%, #111a2c 0%, #080c14 100%),
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px, 24px 24px;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

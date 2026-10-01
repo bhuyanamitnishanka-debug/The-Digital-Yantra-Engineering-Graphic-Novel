@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: digital-yantra-api
+    env: python
+    buildCommand: pip install -r digital_yantra_backend/requirements.txt
+    startCommand: uvicorn digital_yantra_backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # Set your real Google AI Studio key securely via the Render Dashboard UI
